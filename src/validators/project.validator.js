@@ -8,14 +8,16 @@ export const createProjectValidator = [
     .withMessage('El nombre debe tener menos de 255 caracteres'),
 
   body('description')
-    .optional()
-    .isString()
-    .withMessage('La descripción debe ser un texto'),
+  .notEmpty()
+  .withMessage('La descripcion es requerido')
+  .isString()
+  .withMessage('La descripción debe ser un texto'),
 
-    body('status')
-    .optional()
-    .isString()
-    .withMessage('El estado debe ser un texto'),
+   body('status')
+    .notEmpty()
+    .withMessage('El estado debe estar activo')
+    .isLength({ max: 50 })
+    .withMessage('El estado debe tener menos de 50 caracteres'),
 ];
 
 export const updateProjectValidator = [
@@ -27,12 +29,14 @@ export const updateProjectValidator = [
     .withMessage('El nombre debe tener menos de 255 caracteres'),
 
   body('description')
-    .optional()
-    .isString()
-    .withMessage('La descripción debe ser un texto'),
-    
-    body('status')
-    .optional()
-    .isString()
-    .withMessage('El estado debe ser un texto'),
+  .notEmpty()
+  .withMessage('La descripcion es requerido')
+  .isString()
+  .withMessage('La descripción debe ser un texto'),
+
+  body('status')
+    .notEmpty()
+    .withMessage('El estado debe estar activo')
+    .isLength({ max: 50 })
+    .withMessage('El estado debe tener menos de 50 caracteres'),
 ];

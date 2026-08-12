@@ -50,3 +50,39 @@ export const completeTask = async (id, projectId) => {
     completed: true,
   });
 };
+
+
+// trabajo de investigación
+//paginacion para las tareas
+
+const taskRepository = require('../repositories/task.repository');
+
+const getTasksByProject = async (projectId, queryParams) => {
+  // 1. Validar y parsear los query params con valores por defecto
+  const page = parseInt(queryParams.page, 10) || 1;
+  const limit = parseInt(queryParams.limit, 10) || 10;
+
+  // 2. Aplicar Fórmula: offset = (page - 1) * limit
+  const offset = (page - 1) * limit;
+
+  // 3. Llamar al repositorio para obtener total e ítems
+  const { count, rows } = await taskRepository.findTasksByProjectPaginated(projectId, limit, offset);
+
+  // 4. Cálculo de totalPages: Math.ceil(totalItems / limit)
+  const totalPages = Math.ceil(count / limit);
+
+  // 5. Retornar la estructura final de datos y paginación
+  return {
+    tasks: rows,
+    pagination: {
+      totalItems: count,
+      totalPages,
+      currentPage: page,
+      limit
+    }
+  };
+};
+
+module.exports = {
+  getTasksByProject
+};

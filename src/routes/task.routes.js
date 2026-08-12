@@ -28,7 +28,7 @@ router.get('/', authenticate, taskController.getAllTasks);
 
 /**
  * @swagger
- * /tasks/:projectId:
+ * /tasks:
  *   post:
  *     tags:
  *       - Tasks
@@ -90,40 +90,12 @@ router.get(
   taskController.getTask
 );
 
-/** 
- *  @swagger
- * /tasks/:projectId:
- *   patch:
- *     tags:
- *       - Tasks
- *     summary: Marcar una tarea
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *           format: uuid
- *     responses:
- *       200:
- *         description: Tarea actualizada
- *       404:
- *         description: Tarea no actualizada
- */
-router.patch(
-  '/:id',
-  authenticate,
-  uuidParamValidator,
-  validate,
-  taskController.completeTask
-);
+
 
 
 /**
  * @swagger
- * /tasks/:projectId:
+ * /tasks/{id}:
  *   put:
  *     tags:
  *       - Tasks
@@ -163,7 +135,7 @@ router.put(
 
 /**
  * @swagger
- * /tasks/:projectId:
+ * /tasks/{id}:
  *   delete:
  *     tags:
  *       - Tasks
@@ -191,7 +163,7 @@ router.delete(
 
 /**
  * @swagger
- * /tasks/:projectId/complete:
+ * /tasks/{id}/complete:
  *   patch:
  *     tags:
  *       - Tasks

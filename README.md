@@ -248,19 +248,19 @@ Crear un archivo `.env` en la raíz del proyecto basándose en `.env.example`:
 
 | Método | Ruta             | Descripción                | Autenticación |
 | ------ | ---------------- | -------------------------- | ------------- |
-| `POST` | `/auth/register` | Registrar un nuevo usuario | ❌ No          |
-| `POST` | `/auth/login`    | Iniciar sesión             | ❌ No          |
+| `POST` | `/auth/register` | Registrar un nuevo usuario | ❌ No         |
+| `POST` | `/auth/login`    | Iniciar sesión             | ❌ No         |
 
 ### Tareas (`/tasks`)
 
 | Método   | Ruta                  | Descripción                    | Autenticación |
 | -------- | --------------------- | ------------------------------ | ------------- |
-| `GET`    | `/tasks`              | Obtener todas las tareas       | ✅ Bearer JWT  |
-| `POST`   | `/tasks`              | Crear una nueva tarea          | ✅ Bearer JWT  |
-| `GET`    | `/tasks/:id`          | Obtener una tarea por ID       | ✅ Bearer JWT  |
-| `PUT`    | `/tasks/:id`          | Actualizar una tarea           | ✅ Bearer JWT  |
-| `DELETE` | `/tasks/:id`          | Eliminar una tarea             | ✅ Bearer JWT  |
-| `PATCH`  | `/tasks/:id/complete` | Marcar una tarea como completa | ✅ Bearer JWT  |
+| `GET`    | `/tasks`              | Obtener todas las tareas       | ✅ Bearer JWT |
+| `POST`   | `/tasks`              | Crear una nueva tarea          | ✅ Bearer JWT |
+| `GET`    | `/tasks/:id`          | Obtener una tarea por ID       | ✅ Bearer JWT |
+| `PUT`    | `/tasks/:id`          | Actualizar una tarea           | ✅ Bearer JWT |
+| `DELETE` | `/tasks/:id`          | Eliminar una tarea             | ✅ Bearer JWT |
+| `PATCH`  | `/tasks/:id/complete` | Marcar una tarea como completa | ✅ Bearer JWT |
 
 ### Otros
 
@@ -349,5 +349,3 @@ Generada automáticamente con **swagger-jsdoc** a partir de las anotaciones JSDo
 ## 👤 Autor
 
 **Javier Onishi Sadud**
-
-

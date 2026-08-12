@@ -4,7 +4,7 @@ import { toUserResponse } from '../dto/user-response.dto.js';
 import { createUserDto } from '../dto/create-user.dto.js';
 
 export const register = async (req, res) => {
-
+  
   const dto = createUserDto(req.body);
   const user = await authService.register(dto);
 

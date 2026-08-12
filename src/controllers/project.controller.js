@@ -46,7 +46,38 @@ export const deleteProject = async (req, res) => {
 };
 
 export const completeProject = async (req, res) => {
-  const project = await projectService.completeProject(req.params.id, req.user.id);
+  const project = await projectService.completeProject(
+    req.params.id,
+    req.user.id
+  );
 
   return successResponse(res, project, 'proyecto completado');
+};
+
+//trabajo de investigación obtener un proyecto con toda sus tareas
+
+//const projectService = require('../services/project.service');
+
+const getProjectDetails = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+
+    // Llama a la capa de servicio
+    const projectWithTasks = await projectService.getProjectAndItsTasks(projectId);
+
+    return res.status(200).json({
+      status: 'success',
+      data: projectWithTasks
+    });
+  } catch (error) {
+    // Si el servicio asignó un código de estado específico (ej: 404), úsalo
+    const statusCode = error.statusCode || 500;
+    return res.status(statusCode).json({ 
+      error: error.message 
+    });
+  }
+};
+
+module.exports = {
+  getProjectDetails
 };

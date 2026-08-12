@@ -34,76 +34,24 @@ export const remove = async (project) => {
 
 //trabajo de imvestigación
 //implementación de la paginacion e include
-const { Project, Task } = require('../models');
 
-class ProjectRepository {
-  // Implementación de la Paginación de Tareas
-  async findPaginatedTasks({ offset, limit }) {
-    return await Task.findAndCountAll({
-      limit,
-      offset,
-      attributes: ['id', 'title', 'status'] // Atributos de la tarea
-    });
-  }
+//trabajo de investigación obtener un proyecto con toda sus tareas
 
+const { Task } = require('../models');
 
-  // Implementación del Obtener Proyecto con Tareas (Include)
-  async findProjectWithTasks(projectId) {
-    return await Project.findByPk(projectId, {
-      include: {
+const findProjectWithTasks = async (projectId) => {
+  return await Project.findByPk(projectId, {
+    attributes: ['id', 'name', 'description', 'createdAt'], // Atributos del Proyecto
+    include: [
+      {
         model: Task,
-        as: 'tasks', // Alias de la asociación
-        attributes: ['id', 'title', 'status'] // Atributos específicos
+        as: 'tasks', // Alias exacto definido en Project.hasMany(Task, { as: 'tasks' })
+        attributes: ['id', 'title', 'status', 'dueDate'] // Atributos específicos de la Tarea
       }
-    });
-  }
-}
+    ]
+  });
+};
 
-module.exports = new ProjectRepository();
-
-// otro metodo 
-
-const projectRepository = require('../repositories/project.repository');
-
-class ProjectService {
-  // Lógica para paginar tareas
-  async getTasksPaginated(queryParams) {
-    const page = parseInt(queryParams.page) || 1;
-    const limit = parseInt(queryParams.limit) || 10;
-    
-    // Fórmula matemática requerida
-    const offset = (page - 1) * limit;
-
-    // Llamada al repositorio
-    const { count, rows } = await projectRepository.findPaginatedTasks({ offset, limit });
-
-    // Cálculo solicitado
-    const totalPages = Math.ceil(count / limit);
-
-    return {
-      data: rows,
-      pagination: {
-        totalItems: count,
-        totalPages,
-        currentPage: page,
-        limit
-      }
-    };
-  }
-
-  // Lógica para obtener el proyecto con sus relaciones
-  //segunda pregunta
-   // Implementación del Obtener Proyecto con Tareas (Include)
-  async getProjectDetails(projectId) {
-    const project = await projectRepository.findProjectWithTasks(projectId);
-    
-    if (!project) {
-      throw new Error('Proyecto no encontrado'); // Regla de negocio
-    }
-
-    return project;
-  }
-   
-}
-
-module.exports = new ProjectService();
+module.exports = {
+  findProjectWithTasks
+};

@@ -119,8 +119,8 @@ router.get(
  *                 type: string
  *               description:
  *                 type: string
- *              status:
- *                 type: string
+ *               status:
+ *                 type: string   
  *     responses:
  *       200:
  *         description: proyecto actualizado

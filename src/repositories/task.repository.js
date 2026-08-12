@@ -31,3 +31,35 @@ export const update = async (task, data) => {
 export const remove = async (task) => {
   return await task.destroy();
 };
+
+//tarea de investigación 
+// paginacion para las tareas
+
+const { Project, User } = require('../models');
+
+const findTasksByProjectPaginated = async (projectId, limit, offset) => {
+  return await Task.findAndCountAll({
+    where: { projectId },
+    limit,
+    offset,
+    attributes: ['id', 'title', 'description'], // Atributos específicos de la tarea
+    include: [
+      {
+        model: Project,
+        as: 'projects', // Alias de la asociación Project -> Task
+        attributes: ['id', 'name'],
+        include: [
+          {
+            model: User,
+            as: 'user', // Alias de la asociación User -> Project
+            attributes: ['id', 'name', 'email']
+          }
+        ]
+      }
+    ]
+  });
+};
+
+module.exports = {
+  findTasksByProjectPaginated
+};

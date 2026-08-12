@@ -49,3 +49,26 @@ export const completeTask = async (req, res) => {
 
   return successResponse(res, task, 'Tarea completada');
 };
+
+// trabajo de investigación
+//paginacion de las tares
+
+//const taskService = require('../services/task.service');
+
+const getProjectTasks = async (req, res) => {
+  try {
+    const { projectId } = req.params;
+
+    // Pasa la petición a la capa de servicio
+    const result = await taskService.getTasksByProject(projectId, req.query);
+
+    return res.status(200).json(result);
+  } catch (error) {
+    // Gestión centralizada de errores (puedes usar un middleware de errores)
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = {
+  getProjectTasks
+};

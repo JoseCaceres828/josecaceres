@@ -1,4 +1,3 @@
-
 //se llama project.repository.js
 
 const { Project, Task } = require('../models');
@@ -9,7 +8,7 @@ class ProjectRepository {
     return await Task.findAndCountAll({
       limit,
       offset,
-      attributes: ['id', 'title', 'status'] // Atributos de la tarea
+      attributes: ['id', 'title', 'status'], // Atributos de la tarea
     });
   }
 
@@ -19,8 +18,8 @@ class ProjectRepository {
       include: {
         model: Task,
         as: 'tasks', // Alias de la asociación
-        attributes: ['id', 'title', 'status'] // Atributos específicos
-      }
+        attributes: ['id', 'title', 'status'], // Atributos específicos
+      },
     });
   }
 }
