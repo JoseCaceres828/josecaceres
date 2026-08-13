@@ -56,7 +56,7 @@ export const completeProject = async (id, userId) => {
 
 //trabajo de investigación obtener un proyecto con toda sus tareas
 
-const projectRepository = require('../repositories/project.repository');
+const projectRepository = require(module, '../repositories/project.repository');//se agrego module
 
 const getProjectAndItsTasks = async (projectId) => {
   const project = await projectRepository.findProjectWithTasks(projectId);

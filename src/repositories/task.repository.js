@@ -1,4 +1,7 @@
 import Task from '../entities/task.entity.js';
+//impotamos
+import Project from '../entities/project.entity.js';
+import User from '../entities/user.entity.js';
 
 export const create = async (data) => {
   return await Task.create(data);
@@ -35,7 +38,7 @@ export const remove = async (task) => {
 //tarea de investigación 
 // paginacion para las tareas
 
-const { Project, User } = require('../models');
+//const { Project, User } = require(module, '../models');
 
 const findTasksByProjectPaginated = async (projectId, limit, offset) => {
   return await Task.findAndCountAll({
@@ -46,7 +49,7 @@ const findTasksByProjectPaginated = async (projectId, limit, offset) => {
     include: [
       {
         model: Project,
-        as: 'projects', // Alias de la asociación Project -> Task
+        as: 'project', // Alias de la asociación Project -> Task
         attributes: ['id', 'name'],
         include: [
           {

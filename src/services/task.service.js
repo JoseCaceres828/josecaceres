@@ -55,7 +55,7 @@ export const completeTask = async (id, projectId) => {
 // trabajo de investigación
 //paginacion para las tareas
 
-const taskRepository = require('../repositories/task.repository');
+const taskRepository = require(module ,'../repositories/task.repository.js');//se agregp model
 
 const getTasksByProject = async (projectId, queryParams) => {
   // 1. Validar y parsear los query params con valores por defecto

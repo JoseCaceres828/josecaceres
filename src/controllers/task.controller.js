@@ -51,9 +51,9 @@ export const completeTask = async (req, res) => {
 };
 
 // trabajo de investigación
-//paginacion de las tares
+////trabajo de investigación obtener un proyecto con toda sus tareas
 
-//const taskService = require('../services/task.service');
+//const taskService = require(module, '../services/task.service.js');
 
 const getProjectTasks = async (req, res) => {
   try {
