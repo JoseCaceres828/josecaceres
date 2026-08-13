@@ -59,7 +59,7 @@ export const completeProject = async (req, res) => {
 
 //const projectService = require('../services/project.service.js');
 
-const getProjectDetails = async (req, res) => {
+export const getProjectDetails = async (req, res) => {
   try {
     const { projectId } = req.params;
 
@@ -79,6 +79,6 @@ const getProjectDetails = async (req, res) => {
   }
 };
 
-module.exports = {
-  getProjectDetails
-};
+//module.exports = {
+  //getProjectDetails
+//};

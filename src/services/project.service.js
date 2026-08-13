@@ -1,5 +1,6 @@
 import * as repository from '../repositories/project.repository.js';
 import { AppError } from '../utils/AppError.js';
+//import projectRepository from '../repositories/project.repository.js';//se agrego module
 
 export const createProject = async (data) => {
   return await repository.create(data);
@@ -56,10 +57,10 @@ export const completeProject = async (id, userId) => {
 
 //trabajo de investigación obtener un proyecto con toda sus tareas
 
-const projectRepository = require(module, '../repositories/project.repository');//se agrego module
+//const projectRepository = require(module, '../repositories/project.repository');//se agrego module
 
-const getProjectAndItsTasks = async (projectId) => {
-  const project = await projectRepository.findProjectWithTasks(projectId);
+export const getProjectAndItsTasks = async (projectId) => {
+  const project = await repository.findProjectWithTasks(projectId);
 
   // Lógica de negocio: Validar existencia del recurso
   if (!project) {
@@ -71,6 +72,6 @@ const getProjectAndItsTasks = async (projectId) => {
   return project;
 };
 
-module.exports = {
-  getProjectAndItsTasks
-};
+//module.exports = {
+  //getProjectAndItsTasks
+//};

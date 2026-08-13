@@ -1,5 +1,6 @@
 import * as repository from '../repositories/task.repository.js';
 import { AppError } from '../utils/AppError.js';
+//import taskRepository from '../repositories/task.repository.js';//se agregp model
 
 export const createTask = async (data) => {
   return await repository.create(data);
@@ -55,9 +56,9 @@ export const completeTask = async (id, projectId) => {
 // trabajo de investigación
 //paginacion para las tareas
 
-const taskRepository = require(module ,'../repositories/task.repository.js');//se agregp model
+//const taskRepository = require(module ,'../repositories/task.repository.js');//se agregp model
 
-const getTasksByProject = async (projectId, queryParams) => {
+export const getTasksByProject = async (projectId, queryParams) => {
   // 1. Validar y parsear los query params con valores por defecto
   const page = parseInt(queryParams.page, 10) || 1;
   const limit = parseInt(queryParams.limit, 10) || 10;
@@ -66,7 +67,7 @@ const getTasksByProject = async (projectId, queryParams) => {
   const offset = (page - 1) * limit;
 
   // 3. Llamar al repositorio para obtener total e ítems
-  const { count, rows } = await taskRepository.findTasksByProjectPaginated(projectId, limit, offset);
+  const { count, rows } = await repository.findTasksByProjectPaginated(projectId, limit, offset);
 
   // 4. Cálculo de totalPages: Math.ceil(totalItems / limit)
   const totalPages = Math.ceil(count / limit);
@@ -83,6 +84,6 @@ const getTasksByProject = async (projectId, queryParams) => {
   };
 };
 
-module.exports = {
-  getTasksByProject
-};
+//module.exports = {
+  //getTasksByProject
+//};

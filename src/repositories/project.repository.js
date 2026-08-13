@@ -1,7 +1,7 @@
 import Project from '../entities/project.entity.js';
 //importamos
-//import Task from '../entities/project.entity.js';
-import Task from 'module, ../entities/project.entity.js';
+
+import Task from '../entities/task.entity.js';
 
 
 
@@ -42,9 +42,9 @@ export const remove = async (project) => {
 
 //trabajo de investigación obtener un proyecto con toda sus tareas
 
- //const { Task } = require(module, '../models');//se cambio requiere por import
+// const { Task } = require(module, './database/sequelize.js');//se cambio requiere por import
 
-const findProjectWithTasks = async (projectId) => {
+export const findProjectWithTasks = async (projectId) => {
   return await Project.findByPk(projectId, {
     attributes: ['id', 'name', 'description', 'status', 'createdAt'], // Atributos del Proyecto
     include: [
@@ -57,6 +57,6 @@ const findProjectWithTasks = async (projectId) => {
   });
 };
 
-module.exports = {
-  findProjectWithTasks
-};
+//module.exports = {
+  //findProjectWithTasks
+//};

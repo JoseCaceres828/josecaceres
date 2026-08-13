@@ -40,7 +40,7 @@ export const remove = async (task) => {
 
 //const { Project, User } = require(module, '../models');
 
-const findTasksByProjectPaginated = async (projectId, limit, offset) => {
+export const findTasksByProjectPaginated = async (projectId, limit, offset) => {
   return await Task.findAndCountAll({
     where: { projectId },
     limit,
@@ -63,6 +63,6 @@ const findTasksByProjectPaginated = async (projectId, limit, offset) => {
   });
 };
 
-module.exports = {
-  findTasksByProjectPaginated
-};
+//module.exports = {
+  //findTasksByProjectPaginated
+//};
